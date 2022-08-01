@@ -31,3 +31,5 @@ if __name__ == "__main__":
     daily_goal = Info(1, "10 mins of meditation", general_category, 3, 10)
     print(daily_goal.count_categories())
     print(daily_goal.record_general_category.category_description)
+    print(daily_goal.get_available_attributes())
+    print(daily_goal.get_instance_attributes())
