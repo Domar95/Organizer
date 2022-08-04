@@ -1,8 +1,8 @@
 import os
 
-
 class Cli:
-    def __init__(self):
+    def __init__(self, general_category):
+        self.general_category = general_category
         self.check = 1
 
     def clear_screen(self):
@@ -30,6 +30,7 @@ class Cli:
         self.line_space()
 
     def new_screen(func):
+        #does not work (does not clear screen + welcome_screen on main screen (i.e. when wrong input))
         """
         Creates a wrapper function for a new screen
         """
@@ -42,11 +43,19 @@ class Cli:
                 func(self, *args, **kwargs)
 
         return wrapper
+    
+    def print_general_categories(self):
+        starting_index = 1
+        for category in self.general_category.general_categories:
+            print(f'{str(starting_index)}. {category}')
+            starting_index += 1
 
     @new_screen
     def main_menu(self):
         while True:
+            self.print_general_categories()
             print("0. Exit")
+
             self.line_space()
 
             user_choice = input("Enter a number: ")
@@ -54,7 +63,16 @@ class Cli:
 
             if user_choice == "1":
                 pass
-
+            elif user_choice == "2":
+                pass
+            elif user_choice == "3":
+                pass
+            elif user_choice == "4":
+                pass
+            elif user_choice == "5":
+                pass
+            elif user_choice == "6":
+                pass
             elif user_choice == "0":
                 self.goodbye()
                 exit()

@@ -1,5 +1,8 @@
 from ..errors.errors import IndexError
 
+
+#db - mysql - techwithtim
+
 class RecordManager():
     def __init__(self):
         self.records = []
@@ -17,4 +20,4 @@ class RecordManager():
             del self.records[record_id]
         except:
             print('Wrong record id.')
-            raise IndexError(f'Product with id {record_id} does not exist.')
+            raise IndexError(f'Record with id {record_id} does not exist.')
