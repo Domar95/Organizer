@@ -1,8 +1,8 @@
-from .general_category import GeneralCategory
-from .record import Record
+from ..general_category import GeneralCategory
+from ..record import Record
 
 
-class OtherRecord(Record, GeneralCategory):
+class ProgrammingProject(Record):
     def __init__(
         self,
         record_name,
@@ -11,9 +11,7 @@ class OtherRecord(Record, GeneralCategory):
         record_importance,
         record_date,
         deadline=None,
-        domain=None,
-        link=None,
-        image=None,
+        used_technologies=None,
     ):
         super().__init__(
             record_name,
@@ -23,13 +21,11 @@ class OtherRecord(Record, GeneralCategory):
             record_date,
         )
         self.deadline = deadline
-        self.domain = domain
-        self.link = link
-        self.image = image
+        self.used_technologies = used_technologies
 
 
 if __name__ == "__main__":
     general_category = GeneralCategory("Daily Goals", "To do daily")
-    daily_goal = OtherRecord(1, "10 mins of meditation", general_category, 3, 10)
-    print(daily_goal.count_categories())
+    daily_goal = ProgrammingProject(1, "10 mins of meditation", general_category, 3, 10)
+    print(daily_goal.record_general_category.count_categories())
     print(daily_goal.record_general_category.category_description)

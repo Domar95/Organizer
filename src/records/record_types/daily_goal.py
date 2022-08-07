@@ -1,8 +1,8 @@
-from .general_category import GeneralCategory
-from .record import Record
+from ..general_category import GeneralCategory
+from ..record import Record
 
 
-class Info(Record, GeneralCategory):
+class DailyGoal(Record):
     def __init__(
         self,
         record_name,
@@ -10,9 +10,7 @@ class Info(Record, GeneralCategory):
         record_general_category,
         record_importance,
         record_date,
-        domain=None,
-        link=None,
-        image=None,
+        duration=None,
     ):
         super().__init__(
             record_name,
@@ -21,15 +19,14 @@ class Info(Record, GeneralCategory):
             record_importance,
             record_date,
         )
-        self.domain = domain
-        self.link = link
-        self.image = image
+        self.duration = duration
 
 
 if __name__ == "__main__":
     general_category = GeneralCategory("Daily Goals", "To do daily")
-    daily_goal = Info(1, "10 mins of meditation", general_category, 3, 10)
-    print(daily_goal.count_categories())
+    daily_goal = DailyGoal(1, "10 mins of meditation", general_category, 3, 10)
+    print(daily_goal.record_general_category.count_categories())
     print(daily_goal.record_general_category.category_description)
-    print(daily_goal.get_available_attributes())
+    print(dir(daily_goal))
     print(daily_goal.get_instance_attributes())
+    print(daily_goal.get_available_attributes())
