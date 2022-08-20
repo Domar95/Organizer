@@ -1,5 +1,6 @@
 import os
 
+
 class Cli:
     def __init__(self, general_category):
         self.general_category = general_category
@@ -30,7 +31,7 @@ class Cli:
         self.line_space()
 
     def new_screen(func):
-        #does not work (does not clear screen + welcome_screen on main screen (i.e. when wrong input))
+        # does not work (does not clear screen + welcome_screen on main screen (i.e. when wrong input))
         """
         Creates a wrapper function for a new screen
         """
@@ -43,17 +44,19 @@ class Cli:
                 func(self, *args, **kwargs)
 
         return wrapper
-    
+
     def print_general_categories(self):
         starting_index = 1
         for category in self.general_category.general_categories:
-            print(f'{str(starting_index)}. {category}')
+            print(f"{str(starting_index)}. {category}")
             starting_index += 1
 
     @new_screen
     def main_menu(self):
         while True:
             self.print_general_categories()
+            print("1. View categories")
+            print("2. ")
             print("0. Exit")
 
             self.line_space()
@@ -62,6 +65,9 @@ class Cli:
             self.line_space()
 
             if user_choice == "1":
+                # to-do next: create tables (separate for each category) -> done, add models, after 1. 2. 3 etc chosen here, load a db. add a func to view records from that table, then add options
+                # -> shows last 5 added recors (last 5 from table), options: 1. Search for record (by name) 2. View all 3. Add a record 4. Delete
+                # eventually customnized (f.e. for projects print by most important (importance factor)
                 pass
             elif user_choice == "2":
                 pass
