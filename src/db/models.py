@@ -11,7 +11,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 
-from db_manager import DBManager
+from .db_manager import DBManager
 
 # DeclarativeBase in 2.0.0
 Base = declarative_base()
@@ -28,6 +28,9 @@ class GeneralCategory(Base):
     def __repr__(self) -> str:
         return f"GeneralCategory(id={self.id!r}, category_name={self.category_name!r}, category_description={self.category_description!r})"
 
+    def __str__(self):
+        return f"({self.id}) {self.category_name}: {self.category_description}"
+
 
 class DailyGoal(Base):
     __tablename__ = "daily_goal"
@@ -35,10 +38,27 @@ class DailyGoal(Base):
     id = Column(Integer, primary_key=True)
     record_name = Column(String)
     record_text = Column(String)
-    record_general_category_id = Column(Integer, ForeignKey("general_category.id"))
+    record_general_category_id = Column(
+        Integer, ForeignKey("general_category.id"))
     record_importance = Column(Integer)
     record_date = Column(String)
     record_duration = Column(Integer)
+
+    def __repr__(self) -> str:
+        return f"DailyGoal(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_duration={self.record_duration!r}"
+
+    def __str__(self):
+        return f"({self.id}) {self.record_name}: {self.record_text}"
+
+    def get_instance_attributes(self):
+
+        attributes = []
+
+        for attribute in dir(self):
+            if attribute.startswith("record_"):
+                attributes.append(attribute)
+
+        return attributes
 
 
 class Idea(Base):
@@ -47,11 +67,18 @@ class Idea(Base):
     id = Column(Integer, primary_key=True)
     record_name = Column(String)
     record_text = Column(String)
-    record_general_category_id = Column(Integer, ForeignKey("general_category.id"))
+    record_general_category_id = Column(
+        Integer, ForeignKey("general_category.id"))
     record_importance = Column(Integer)
     record_date = Column(String)
     record_deadline = Column(String)
     record_domain = Column(String)
+
+    def __repr__(self) -> str:
+        return f"Idea(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_deadline={self.record_deadline!r}, record_domain={self.record_domain!r}"
+
+    def __str__(self):
+        return f"({self.id}) {self.record_name}: {self.record_text}"
 
 
 class Info(Base):
@@ -60,12 +87,19 @@ class Info(Base):
     id = Column(Integer, primary_key=True)
     record_name = Column(String)
     record_text = Column(String)
-    record_general_category_id = Column(Integer, ForeignKey("general_category.id"))
+    record_general_category_id = Column(
+        Integer, ForeignKey("general_category.id"))
     record_importance = Column(Integer)
     record_date = Column(String)
     record_domain = Column(String)
     record_link = Column(String)
     record_image = Column(String)
+
+    def __repr__(self) -> str:
+        return f"Info(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_domain={self.record_domain!r}, record_link={self.record_link!r}, record_image={self.record_image}"
+
+    def __str__(self):
+        return f"({self.id}) {self.record_name}: {self.record_text}"
 
 
 class OtherRecord(Base):
@@ -74,13 +108,20 @@ class OtherRecord(Base):
     id = Column(Integer, primary_key=True)
     record_name = Column(String)
     record_text = Column(String)
-    record_general_category_id = Column(Integer, ForeignKey("general_category.id"))
+    record_general_category_id = Column(
+        Integer, ForeignKey("general_category.id"))
     record_importance = Column(Integer)
     record_date = Column(String)
     record_deadline = Column(String)
     record_domain = Column(String)
     record_link = Column(String)
     record_image = Column(String)
+
+    def __repr__(self) -> str:
+        return f"OtherRecord(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_deadline={self.record_deadline!r}, record_domain={self.record_domain!r}, record_link={self.record_link!r}, record_image={self.record_image}"
+
+    def __str__(self):
+        return f"({self.id}) {self.record_name}: {self.record_text}"
 
 
 class ProgrammingProject(Base):
@@ -89,11 +130,18 @@ class ProgrammingProject(Base):
     id = Column(Integer, primary_key=True)
     record_name = Column(String)
     record_text = Column(String)
-    record_general_category_id = Column(Integer, ForeignKey("general_category.id"))
+    record_general_category_id = Column(
+        Integer, ForeignKey("general_category.id"))
     record_importance = Column(Integer)
     record_date = Column(String)
     record_deadline = Column(String)
     record_used_technologies = Column(String)
+
+    def __repr__(self) -> str:
+        return f"Programming Project(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_deadline={self.record_deadline!r}, record_used_technologies={self.record_used_technologies!r}"
+
+    def __str__(self):
+        return f"({self.id}) {self.record_name}: {self.record_text}"
 
 
 class Reflection(Base):
@@ -102,13 +150,19 @@ class Reflection(Base):
     id = Column(Integer, primary_key=True)
     record_name = Column(String)
     record_text = Column(String)
-    record_general_category_id = Column(Integer, ForeignKey("general_category.id"))
+    record_general_category_id = Column(
+        Integer, ForeignKey("general_category.id"))
     record_importance = Column(Integer)
     record_date = Column(String)
     record_deadline = Column(String)
     record_domain = Column(String)
     record_link = Column(String)
 
+    def __repr__(self) -> str:
+        return f"DailyGoal(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_deadline={self.record_deadline!r}, record_domain={self.record_domain!r}, record_link={self.record_link!r}"
+
+    def __str__(self):
+        return f"({self.id}) {self.record_name}: {self.record_text}"
 
 # Base.metadata.create_all(engine)
 
