@@ -1,5 +1,7 @@
 import os
 
+from functools import wraps
+
 
 class Cli:
     def __init__(self, general_category):
@@ -30,28 +32,28 @@ class Cli:
         self.separator()
         self.line_space()
 
-    def new_screen(func):
+    def new_screen(function):
         # does not work (does not clear screen + welcome_screen on main screen (i.e. when wrong input))
         """
         Creates a wrapper function for a new screen
         """
 
-        def wrapper(self, *args, **kwargs):
-            while True:
-                # Clear interpreter screen
-                self.clear_screen()
-                self.welcome_screen()
-                func(self, *args, **kwargs)
+        @wraps(function)
+        def decorator(self, *args, **kwargs):
+            # Clear interpreter screen
+            self.clear_screen()
+            self.welcome_screen()
+            function(self, *args, **kwargs)
 
-        return wrapper
+        return decorator
 
+    @new_screen
     def print_general_categories(self):
         starting_index = 1
         for category in self.general_category.general_categories:
             print(f"{str(starting_index)}. {category}")
             starting_index += 1
 
-    @new_screen
     def main_menu(self):
         while True:
             self.print_general_categories()

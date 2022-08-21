@@ -17,7 +17,7 @@ class DBManager:
         PASSWORD = os.getenv("db_password")
 
         self.engine = create_engine(
-            f"mysql://{USERNAME}:{PASSWORD}@127.0.0.1:3306/testrecorddb", echo=True
+            f"mysql://{USERNAME}:{PASSWORD}@127.0.0.1:3306/organizer", echo=True
         )
 
 
