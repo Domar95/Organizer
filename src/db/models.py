@@ -11,8 +11,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 
-# from .db_manager import DBManager
-
 # DeclarativeBase in 2.0.0
 Base = declarative_base()
 
@@ -48,7 +46,7 @@ class DailyGoal(Base):
         return f"DailyGoal(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_duration={self.record_duration!r}"
 
     def __str__(self):
-        return f"({self.id}) {self.record_name}: {self.record_text}"
+        return f"({self.id}) N: {self.record_name} | T: {self.record_text} | I: {self.record_importance} | DT: {self.record_date} | DR: {self.record_duration}"
 
     def update(self, record_name, record_text, record_importance, record_date, record_duration):
         self.record_name = record_name
@@ -75,7 +73,7 @@ class Idea(Base):
         return f"Idea(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_deadline={self.record_deadline!r}, record_domain={self.record_domain!r}"
 
     def __str__(self):
-        return f"({self.id}) {self.record_name}: {self.record_text}"
+        return f"({self.id}) N: {self.record_name} | T: {self.record_text} | I: {self.record_importance} | DT: {self.record_date} | DL: {self.record_deadline} | DM: {self.record_domain}"
 
     def update(self, record_name, record_text, record_importance, record_date, record_deadline, record_domain):
         self.record_name = record_name
@@ -104,7 +102,7 @@ class Info(Base):
         return f"Info(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_domain={self.record_domain!r}, record_link={self.record_link!r}, record_image={self.record_image}"
 
     def __str__(self):
-        return f"({self.id}) {self.record_name}: {self.record_text}"
+        return f"({self.id}) N: {self.record_name} | T: {self.record_text} | I: {self.record_importance} | DT: {self.record_date} | DM: {self.record_domain} | L: {self.record_link} | IMG: {self.record_image}"
 
     def update(self, record_name, record_text, record_importance, record_date, record_domain, record_link, record_image):
         self.record_name = record_name
@@ -135,7 +133,7 @@ class OtherRecord(Base):
         return f"OtherRecord(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_deadline={self.record_deadline!r}, record_domain={self.record_domain!r}, record_link={self.record_link!r}, record_image={self.record_image}"
 
     def __str__(self):
-        return f"({self.id}) {self.record_name}: {self.record_text}"
+        return f"({self.id}) N: {self.record_name} | T: {self.record_text} | I: {self.record_importance} | DT: {self.record_date} | DL: {self.record_deadline} | DM: {self.record_domain} | L: {self.record_link} | IMG: {self.record_image}"
 
     def update(self, record_name, record_text, record_importance, record_date, record_deadline, record_domain, record_link, record_image):
         self.record_name = record_name
@@ -165,7 +163,7 @@ class ProgrammingProject(Base):
         return f"Programming Project(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_deadline={self.record_deadline!r}, record_used_technologies={self.record_used_technologies!r}"
 
     def __str__(self):
-        return f"({self.id}) {self.record_name}: {self.record_text}"
+        return f"({self.id}) N: {self.record_name} | T: {self.record_text} | I: {self.record_importance} | DT: {self.record_date} | DL: {self.record_deadline} | UT: {self.record_used_technologies}"
 
     def update(self, record_name, record_text, record_importance, record_date, record_deadline, record_used_technologies):
         self.record_name = record_name
@@ -194,7 +192,7 @@ class Reflection(Base):
         return f"DailyGoal(id={self.id!r}, record_name={self.record_name!r}, record_text={self.record_text!r}, record_general_category_id={self.record_general_category_id!r}, record_importance={self.record_importance!r}, record_date={self.record_date!r}, record_deadline={self.record_deadline!r}, record_domain={self.record_domain!r}, record_link={self.record_link!r}"
 
     def __str__(self):
-        return f"({self.id}) {self.record_name}: {self.record_text}"
+        return f"({self.id}) N: {self.record_name} | T: {self.record_text} | I: {self.record_importance} | DT: {self.record_date} | DL: {self.record_deadline} | DM: {self.record_domain} | L: {self.record_link}"
 
     def update(self, record_name, record_text, record_importance, record_date, record_deadline, record_domain, record_link):
         self.record_name = record_name
@@ -204,7 +202,3 @@ class Reflection(Base):
         self.record_deadline = record_deadline
         self.record_domain = record_domain
         self.record_link = record_link
-
-
-if __name__ == "__main__":
-    pass

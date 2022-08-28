@@ -84,8 +84,9 @@ class DBManager:
     def find_record_by_name(self, table, data):
         Session = sessionmaker(self.engine)
         with Session() as session:
-            result = session.query(table).filter(
-                table.record_name.contains(data))
+            result = []
+            for i in session.query(table).filter(table.record_name.contains(data)):
+                result.append(i)
             return result
 
 
