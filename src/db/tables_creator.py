@@ -1,6 +1,6 @@
 from sqlalchemy import Table, Column, Integer, String, MetaData
 
-from db_manager import DBManager
+from .db_manager import DBManager
 
 
 class TableCreator:

@@ -318,8 +318,10 @@ class Cli:
         record_id = input(
             f"Enter ID of item to delete in {self.get_table_name()}: ")
         record_id_int = int(record_id)
-        print(f"Following data is going to be deleted:")
-        self.print_record_by_id(record_id_int)
+        record = self.db_manager.find_record_by_id(
+            self.table, record_id_int)
+        print(f"Following data will be deleted:")
+        print(repr(record))
         user_confirmation = input(
             'Do you want to confirm? (y/n): ')
         self.line_space()

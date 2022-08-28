@@ -135,4 +135,4 @@ if __name__ == "__main__":
     engine = db_manager.engine
 
     dummy_data_creator = DummyDataCreator(engine)
-    dummy_data_creator.add_records(6)
+    dummy_data_creator.add_records(16)
