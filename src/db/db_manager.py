@@ -66,10 +66,20 @@ class DBManager:
             session.commit()
 
     def delete_record_from_db(self, table, id):
+        # might be reasonable to re-order it after deletion (so if i delete ID 9 then all above are down by one so next starts at 9 again instead of 10)
+        # or maybe the pattern is that this ID remains but we sort on other thing like date or sth (but it seems better to sort by ID coz its more mistake proof)
         Session = sessionmaker(self.engine)
         with Session() as session:
             session.query(table).filter(table.id == id).delete(
                 synchronize_session=False)
+            session.commit()
+
+    def update_record(self, record):
+        # might be using other funtions to first find a record to update (either by id or name  (but our name search might return many records, so rather not. Rather than object itself to be inputted (which was found by probably another func or choose by ID which is passed into func and then query inside this func)), and then input that record here so it can be updated
+        # or create new object and place it into its place? or 1st delete and then input into its place?
+        # or just delete old, sort and input new ? so it gets on the top of a list again? reason: coz it was updated
+        # have to check what are the implementations for update
+        raise NotImplementedError
 
     def find_record_by_id(self, table, id):
         Session = sessionmaker(self.engine)

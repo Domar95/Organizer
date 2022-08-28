@@ -69,6 +69,8 @@ class Cli:
         self.separator()
 
     def print_table_with_all_records(self):
+        # might add sortings + eventually customnized sort by (f.e. for projects print by most important (importance factor) | or do this as additional option in the menu, like view most important records, so I can choose f.e. which project to do now
+        # in this case I might specific submenus specific to each class (or a general one (like view all, search for, add, delete, update) + specific)
         table_name = self.get_table_name()
         print(f"All records for {table_name}:")
         request = self.db_manager.query_select_table_ordered_asc(
@@ -109,6 +111,8 @@ class Cli:
         print("2. Search for record")
         print("3. Add new record")
         print("4. Delete a record")
+        # or update 4. and delete 5. | update record by id?
+        print("5. Update a record")
         self.print_go_back_option()
         self.line_space()
 
@@ -132,10 +136,8 @@ class Cli:
 
             user_choice = self.user_choice_input()
             self.line_space()
-            # to-do next: create tables (separate for each category) -> done, add models -> done,
-            # after 1. 2. 3 etc chosen here, load a db. add a func to view records from that table, then add options
-            # -> shows last 5 added recors (last 5 from table), options: 1. Search for record (by name) 2. View all 3. Add a record 4. Delete
-            # eventually customnized (f.e. for projects print by most important (importance factor)
+
+            # all these objects need to be created somewhere else and passed into CLI. maybe into main file into Cli() or a class that we will inherit from which will have a self.list with these objects
             if user_choice == "1":
                 self.table = DailyGoal
                 self.dummy_object = DailyGoal(
@@ -255,9 +257,16 @@ class Cli:
                     record_id = input(
                         f"Enter ID of item to delete in {self.get_table_name()}: ")
                     record_id_int = int(record_id)
-                    self.db_manager.delete_record_from_db(
-                        self.table, record_id_int)
-                    pass
+                    print(f"Following item is going to be deleted:")
+                    self.print_record_by_id(record_id_int)
+                    user_confirmation = input(
+                        'Do you want to confirm? (y/n): ')
+                    self.line_space()
+                    if user_confirmation == 'y':
+                        self.db_manager.delete_record_from_db(
+                            self.table, record_id_int)
+                        print('Data deleted.')
+                    self.line_space()
                 elif user_choice == '0':
                     # go back
                     break
