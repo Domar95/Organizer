@@ -11,7 +11,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 
-from .db_manager import DBManager
+# from .db_manager import DBManager
 
 # DeclarativeBase in 2.0.0
 Base = declarative_base()
@@ -59,6 +59,14 @@ class DailyGoal(Base):
                 attributes.append(attribute)
 
         return attributes
+
+    # (self, record_name, record_text, record_importance, record_date, record_duration, **kwargs):
+    def update(self, record_name, record_text, record_importance, record_date, record_duration):
+        self.record_name = record_name
+        self.record_text = record_text
+        self.record_importance = record_importance
+        self.record_date = record_date
+        self.record_duration = record_duration
 
 
 class Idea(Base):
