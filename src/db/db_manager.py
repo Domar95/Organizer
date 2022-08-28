@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from sqlalchemy.sql import select
 from sqlalchemy import desc
 
-from .models import *
+#from .models import *
 from sqlalchemy.orm import sessionmaker
 
 
@@ -92,7 +92,3 @@ class DBManager:
 if __name__ == "__main__":
     db_manager = DBManager()
     db_manager.start_engine()
-    table = GeneralCategory
-    request = db_manager.select_table_ordered(table, 5)
-    for i in request:
-        print(i)

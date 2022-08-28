@@ -249,13 +249,6 @@ class Cli:
                         print('Data saved.')
                     print('Data was not saved.')
                     self.line_space()
-                    # print(record1.record_name)
-                    # print(type(record1))
-                    # update_record
-                    # loop through each value:
-                    # 1. Enter new value
-                    # 2. Pass
-                    pass
                 elif user_choice == '5':
                     record_id = input(
                         f"Enter ID of item to delete in {self.get_table_name()}: ")
@@ -270,13 +263,6 @@ class Cli:
                             self.table, record_id_int)
                         print('Data deleted.')
                     self.line_space()
-                elif user_choice == '6':
-                    #rec = self.db_manager.update_query_v2(self.table, 11)
-                    #rec_upd = self.input_form_update(rec)
-                    #self.db_manager.update_query(self.table, 11, rec_upd)
-                    pass
-                    # self.db_manager.update_query(
-                    #    self.table, 11, self.dummy_object)
                 elif user_choice == '0':
                     break
                 else:
