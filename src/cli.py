@@ -1,10 +1,7 @@
 import os
-
-from functools import wraps
-from types import new_class
 import time
 
-# from .db.models import *
+from functools import wraps
 
 
 class Cli:
@@ -41,7 +38,6 @@ class Cli:
         self.line_space()
 
     def new_screen(function):
-        # does not work (does not clear screen + welcome_screen on main screen (i.e. when wrong input))
         """
         Creates a wrapper function for a new screen
         """
