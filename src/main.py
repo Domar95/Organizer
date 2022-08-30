@@ -1,3 +1,4 @@
+from src.utils.cli_helper import CLIHelper
 from .cli import Cli
 from .records.general_category import GeneralCategory
 
@@ -7,7 +8,7 @@ from .records.record_factory import RecordFactory
 
 
 def main():
-    general_category = GeneralCategory('category_name', 'category_description')
+    general_category = GeneralCategory("category_name", "category_description")
     db_manager = DBManager()
     db_manager.start_engine()
     record_factory = RecordFactory()
