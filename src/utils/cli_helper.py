@@ -20,7 +20,7 @@ class CLIHelper:
         print("Wrong input. Try again.")
         CLIHelper.line_space()
 
-    def goodbye(self):
+    def goodbye():
         print("Goodbye!")
 
     def welcome_screen():
