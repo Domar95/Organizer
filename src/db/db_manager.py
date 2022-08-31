@@ -19,9 +19,12 @@ class DBManager:
         load_dotenv()
         USERNAME = os.getenv("db_username")
         PASSWORD = os.getenv("db_password")
+        HOSTNAME = os.getenv("db_hostname")
+        PORT = os.getenv("db_port")
+        DATABASE = os.getenv("db_database_name")
 
         self.engine = create_engine(
-            f"mysql://{USERNAME}:{PASSWORD}@127.0.0.1:3306/organizer", echo=False
+            f"mysql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{DATABASE}", echo=False
         )
 
         self.conn = self.engine.connect()
