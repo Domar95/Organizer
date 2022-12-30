@@ -183,7 +183,7 @@ class Cli:
             elif user_choice == "0":
                 break
             else:
-                self.wrong_input
+                CLIHelper.wrong_input()
 
     @CLIHelper.new_screen
     def print_search_options(self):
